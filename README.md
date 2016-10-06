@@ -5,7 +5,7 @@
 
 # Build & install
 * `go get github.com/mitchellh/go-ps`
-* `git clone` into `%GOPATH%\src\github.com\whatalnk\runjn`
+* `go get github.com/whatalnk/runjn`
 * `cd`
 * `go generate`
 * `go build`
