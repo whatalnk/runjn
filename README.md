@@ -11,3 +11,6 @@
 * `go build`
 * `go install github.com/whatalnk/runjn`
 * associate to `*.ipynb`
+
+# What is "open.exe" ?
+* Installed with [R](https://cran.r-project.org/)
