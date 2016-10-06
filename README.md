@@ -14,3 +14,14 @@
 
 # What is "open.exe" ?
 * Installed with [R](https://cran.r-project.org/)
+
+```
+>where open
+C:\R\R-3.3.1\bin\x64\open.exe
+
+>open --help
+Usage: Rcmd open file [file ...]
+
+  opens each file with the application given by
+  the Windows file association (if any)
+```
