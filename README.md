@@ -1,5 +1,7 @@
 # Build & install
 * `go get github.com/mitchellh/go-ps`
+* `go get github.com/mitchellh/go-homedir`
+* `go get github.com/skratchdot/open-golang/open`
 * `go get github.com/whatalnk/runjn`
 * `cd`
 * `go generate` (if you need icon)
@@ -13,18 +15,4 @@
 * `magick jupyter-sq.png -define icon:auto-resize=32 icon.ico`
 
 # Notes
-* Set environmental variable `HOME`
-    * Like `C:\Users\yourname`
-* "open.exe" ?
-    * Installed with [R](https://cran.r-project.org/)
-
-```
->where open
-C:\R\R-3.3.1\bin\x64\open.exe
-
->open --help
-Usage: Rcmd open file [file ...]
-
-  opens each file with the application given by
-  the Windows file association (if any)
-```
+* Supported Windows only
