@@ -11,8 +11,9 @@ import (
 	"regexp"
 	"strings"
 
+	"path"
+
 	"github.com/mitchellh/go-homedir"
-	"github.com/mitchellh/go-ps"
 	"github.com/skratchdot/open-golang/open"
 )
 
@@ -20,20 +21,18 @@ func normpath(p string) string {
 	return strings.Replace(p, "\\", "/", -1)
 }
 func main() {
-	isrunning := false
 	home, _ := homedir.Dir()
-	v, _ := ps.Processes()
-	r := regexp.MustCompile(`jupyter`)
-	for _, p := range v {
-		if r.MatchString(p.Executable()) {
-			isrunning = true
-			break
-		}
+	jupyter, err := exec.LookPath("jupyter")
+	if err != nil {
+		log.Fatal(err)
 	}
-	if isrunning {
+	out, err := exec.Command(jupyter, "notebook", "list").Output()
+	re := regexp.MustCompile(`http://localhost:[0-9]+/`)
+	address := re.FindString(string(out))
+	if address != "" {
 		nbpath, _ := filepath.Rel(home, os.Args[1])
-		nburl, _ := url.Parse("http://localhost:8888/notebooks/")
-		nburl.Path += normpath(nbpath)
+		nburl, _ := url.Parse(address)
+		nburl.Path = path.Join(nburl.Path, normpath(nbpath))
 		err := open.Start(nburl.String())
 		if err != nil {
 			log.Fatal(err)
